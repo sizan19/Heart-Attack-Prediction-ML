@@ -3,9 +3,16 @@ import json
 import pickle
 import numpy as np
 import os
+from pathlib import Path
 
 # Load the trained model
-model_path = os.path.join(os.path.dirname(__file__), '..', 'model.pkl')
+# Get the absolute path to the model file in the project root
+current_file = Path(__file__).resolve()
+project_root = current_file.parent.parent
+model_path = project_root / 'model.pkl'
+
+print(f"Loading model from: {model_path}")  # Debug logging
+
 with open(model_path, 'rb') as f:
     model_data = pickle.load(f)
 
